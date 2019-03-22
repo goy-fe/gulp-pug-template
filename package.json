@@ -1,0 +1,62 @@
+{
+  "name": "gulp-pug-template",
+  "version": "0.0.1",
+  "keywords": [
+    "gulp",
+    "pug",
+    "scss",
+    "postcss",
+    "template",
+    "boilerpate",
+    "imagemin"
+  ],
+  "description": "A project boilterplate based on gulp 4.x and pug.",
+  "main": "gulpfile.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "author": "ntnyq <ntnyq13@gmail.com>",
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "autoprefixer": "^9.5.0",
+    "browser-sync": "^2.26.3",
+    "fs-extra": "^7.0.1",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-base64": "^0.1.3",
+    "gulp-changed": "^3.2.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-data": "^1.3.1",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-size": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "husky": "^1.3.1",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^7.0.0",
+    "js-yaml": "^3.13.0",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4"
+  },
+  "dependencies": {}
+}

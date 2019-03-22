@@ -1,0 +1,12 @@
+siteTitle: Gulp Pug Template
+
+keywords: 关键词1，关键词2，关键词3
+
+description: 描述描述描述描述描述描述
+
+styles:
+  - ./css/common.css
+  - ./css/style.css
+
+scripts:
+  - ./js/main.js
