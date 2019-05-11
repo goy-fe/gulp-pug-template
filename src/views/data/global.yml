@@ -6,7 +6,6 @@ description: 描述描述描述描述描述描述
 
 styles:
   - ./css/common.css
-  - ./css/style.css
 
 scripts:
   - ./js/main.js

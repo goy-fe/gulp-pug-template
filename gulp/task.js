@@ -14,10 +14,10 @@ const {
   sassConfig = {},
   base64Config = {},
   pugConfig = {}
-} = readFileData(resolve(__dirname, 'config.yml'))
+} = readYamlFile(resolve(__dirname, 'config.yml'))
 const destDir = () => isProduction() ? distDir : devDir
 
-function readFileData (path) {
+function readYamlFile (path) {
   let data = {}
 
   if (fs.existsSync(path)) {
@@ -36,8 +36,8 @@ const injectPugData = file => {
   const viewsDir = dirname(filePath)
   const globalDataPath = `${viewsDir}/data/global.yml`
   const localDataPath = `${viewsDir}/data/${basename(filePath, '.pug')}.yml`
-  const globalData = readFileData(globalDataPath)
-  const localData = readFileData(localDataPath)
+  const globalData = readYamlFile(globalDataPath)
+  const localData = readYamlFile(localDataPath)
 
   return Object.assign(globalData, { local: localData })
 }
@@ -116,6 +116,7 @@ function views () {
       .pipe($.data(injectPugData))
       .pipe($.pug(pugConfig))
       .pipe($.rename({ extname: '.html' }))
+      .pipe($.formatHtml())
       .pipe(gulp.dest(`${destDir()}`))
   )
 }
