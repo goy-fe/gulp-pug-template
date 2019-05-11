@@ -3751,6 +3751,7 @@ gulp@^4.0.2:
   version "4.0.2"
   resolved "https://registry.npm.taobao.org/gulp/download/gulp-4.0.2.tgz#543651070fd0f6ab0a0650c6a3e6ff5a7cb09caa"
   integrity sha1-VDZRBw/Q9qsKBlDGo+b/WnywnKo=
+
   dependencies:
     glob-watcher "^5.0.3"
     gulp-cli "^2.2.0"
@@ -3953,7 +3954,8 @@ husky@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/husky/download/husky-2.2.0.tgz#4dda4370ba0f145b6594be4a4e4e4d4c82a6f2d5"
   integrity sha1-TdpDcLoPFFtllL5KTk5NTIKm8tU=
-  dependencies:
+
+dependencies:
     cosmiconfig "^5.2.0"
     execa "^1.0.0"
     find-up "^3.0.0"
@@ -5368,6 +5370,7 @@ node-releases@^1.1.17:
   version "1.1.18"
   resolved "https://registry.npm.taobao.org/node-releases/download/node-releases-1.1.18.tgz#cc98fd75598a324a77188ebddf6650e9cbd8b1d5"
   integrity sha1-zJj9dVmKMkp3GI6932ZQ6cvYsdU=
+  
   dependencies:
     semver "^5.3.0"
 
