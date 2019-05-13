@@ -1,0 +1,15 @@
+body,
+input,
+button,
+textarea,
+select,
+option {
+  font: normal $font-size $font;
+}
+
+body {
+  position: relative;
+  min-width: 1200px;
+  background-color: $global-bg-color;
+  color: $text-primary-color;
+}

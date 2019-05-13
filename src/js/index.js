@@ -1,1 +1,7 @@
-console.log('I am from index.js')
+$.WEBSITE = {
+  init() {}
+}
+
+$(() => {
+  $.WEBSITE.init()
+})

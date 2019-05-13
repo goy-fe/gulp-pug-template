@@ -51,7 +51,9 @@ function styles () {
     gulp
       .src(`src/scss/**/*.scss`)
       .pipe($.plumber())
-      .pipe($.sass(sassConfig).on('error', err => { console.log(err) }))
+      .pipe($.sass(sassConfig).on('error', function (err) {
+        this.$emit('end')
+      }))
       .pipe($.postcss())
       .pipe($.base64(base64Config))
       .pipe(gulp.dest(`src/css`))

@@ -1,0 +1,23 @@
+img.responsive {
+  @include responsive;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.bg-contain {
+  @include bg-style;
+}
+
+.ellipsis {
+  @include ellipsis;
+}

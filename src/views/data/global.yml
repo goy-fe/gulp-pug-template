@@ -8,4 +8,4 @@ styles:
   - ./css/common.css
 
 scripts:
-  - ./js/main.js
+  - ./static/jquery.min.js
