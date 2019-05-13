@@ -1,0 +1,22 @@
+@mixin clearfix {
+  zoom: 1;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    overflow: hidden;
+  }
+}
+
+@mixin responsive($percent: 100%) {
+  display: block;
+  max-width: $percent;
+  margin: 0 auto;
+  @content;
+}
+
+@mixin trs($time: 0.3s, $type: ease-out, $property: all) {
+  transition: $property $time $type;
+  @content;
+}
