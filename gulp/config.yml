@@ -7,7 +7,7 @@ distDir: dist
 
 # config for sass
 sassConfig:
-  outputStyle: compressed
+  outputStyle: expanded
   precision: 5
   sourceComments: false
 
@@ -22,3 +22,5 @@ base64Config:
 pugConfig:
   pretty: true
 
+# Compress css & js file, transform small png to base64
+# minify: true

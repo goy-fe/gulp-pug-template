@@ -13,9 +13,19 @@ const {
   distDir = 'dist',
   sassConfig = {},
   base64Config = {},
-  pugConfig = {}
+  pugConfig = {},
+  minify = false
 } = readYamlFile(resolve(__dirname, 'config.yml'))
 const destDir = () => isProduction() ? distDir : devDir
+
+const banner = `/*!
+=================================================================
+
+                  本文件由SCSS编译生成，禁止直接修改
+
+=================================================================
+*/
+`
 
 function readYamlFile (path) {
   let data = {}
@@ -55,12 +65,13 @@ function styles () {
         this.$emit('end')
       }))
       .pipe($.postcss())
-      .pipe($.base64(base64Config))
+      .pipe($.if(isProduction() && minify, $.base64(base64Config)))
+      .pipe($.if(isProduction(), $.banner(banner)))
       .pipe(gulp.dest(`src/css`))
       .pipe(gulp.dest(`${destDir()}/css`))
-      .pipe($.if(isProduction(), $.rename({ suffix: '.min' })))
-      .pipe($.if(isProduction(), $.cleanCss()))
-      .pipe($.if(isProduction(), gulp.dest(`${destDir()}/css`)))
+      .pipe($.if(isProduction() && minify, $.rename({ suffix: '.min' })))
+      .pipe($.if(isProduction() && minify, $.cleanCss()))
+      .pipe($.if(isProduction() && minify, gulp.dest(`${destDir()}/css`)))
   )
 }
 
@@ -71,9 +82,9 @@ function scripts () {
       .pipe($.plumber())
       .pipe($.babel())
       .pipe(gulp.dest(`${destDir()}/js`))
-      .pipe($.if(isProduction(), $.rename({ suffix: '.min' })))
-      .pipe($.if(isProduction(), $.uglify()))
-      .pipe($.if(isProduction(), gulp.dest(`${destDir()}/js`)))
+      .pipe($.if(isProduction() && minify, $.rename({ suffix: '.min' })))
+      .pipe($.if(isProduction() && minify, $.uglify()))
+      .pipe($.if(isProduction() && minify, gulp.dest(`${destDir()}/js`)))
   )
 }
 
