@@ -19,4 +19,6 @@ yarn-error.log*
 /.temp
 /dev
 /src/css
+
+# Uncomment beblow to push dist directory to git server
 /dist

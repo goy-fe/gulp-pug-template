@@ -22,5 +22,8 @@ base64Config:
 pugConfig:
   pretty: true
 
-# Compress css & js file, transform small png to base64
+# Uncomment below to optimaze assets and uglify js file
 # minify: true
+
+# Uncomment below to enable imagemin plugin when build
+# imageminEnable: true
