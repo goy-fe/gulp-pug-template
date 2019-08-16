@@ -8,14 +8,14 @@ const browserSync = require('browser-sync').create()
 const loadPlugins = require('gulp-load-plugins')
 const $ = loadPlugins()
 const isProduction = () => process.env.NODE_ENV === 'production'
-const {
+let {
   devDir = 'dev',
   distDir = 'dist',
   sassConfig = {},
   base64Config = {},
   pugConfig = {},
   minify = false,
-  imageminEnable = false
+  imageminEnable = false,
 } = readYamlFile(resolve(__dirname, 'config.yml'))
 const destDir = () => isProduction() ? distDir : devDir
 
@@ -65,6 +65,7 @@ function styles () {
       .src(`src/scss/**/*.scss`)
       .pipe($.plumber())
       .pipe($.sass(sassConfig).on('error', function (err) {
+        console.log(err)
         this.$emit('end')
       }))
       .pipe($.postcss())
@@ -105,9 +106,9 @@ function images () {
             $.imagemin.optipng({ optimizationLevel: 7 }),
             $.imagemin.svgo(),
             imageminMozjpeg({ quality: 70 }),
-            imageminPngquant({ quality: [0.65, 0.8] })
+            imageminPngquant({ quality: [0.65, 0.8] }),
           ], {
-            verbose: false
+            verbose: false,
           })))
       .pipe(gulp.dest(`${destDir()}/img`))
       .pipe($.size({ title: 'Images total size' }))
@@ -160,8 +161,8 @@ function statics () {
 function server () {
   browserSync.init({
     server: {
-      baseDir: `./${devDir}`
-    }
+      baseDir: `./${devDir}`,
+    },
   })
 
   gulp.watch(`src/*.html`, html)
