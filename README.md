@@ -4,23 +4,36 @@
 
 ## 集成功能
 
-- SCSS
-- Postcss
-- Base64
-- Babel
-- Pug
-- Imagemin
-- Clean-CSS
-- Autoprefixer
-- Uglify
-- Plop
+- scss
+- postcss
+- base64
+- babel
+- pug
+- imagemin
+- clean-css
+- autoprefixer
+- uglifyjs
+- plop
+- lint-staged
+- husky
 
 支持配置定制，使用 `yaml` 来编写配置文件。
 
-支持通过 __plop__ 简单自动化创建页面相关文件(HTML, SCSS, JS, Config)。
-
-通过以下命令：
+## Build Setup
 
 ``` bash
-$ yarn make
+# install dependencies
+$ yarn
+
+# serve with auto refresh
+$ yarn dev
+
+# build without optimazing
+$ yarn build
+
+# build with optimazing 
+$ yarn build:minify
+
+# generate template files
+$ yarn plop
 ```

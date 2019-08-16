@@ -8,7 +8,6 @@ const browserSync = require('browser-sync').create()
 const loadPlugins = require('gulp-load-plugins')
 const $ = loadPlugins()
 
-const isProduction = () => process.env.NODE_ENV === 'production'
 const {
   devDir = 'dev',
   distDir = 'dist',
@@ -16,6 +15,7 @@ const {
   base64Config = {},
   pugConfig = {},
 } = readYamlFile(resolve(__dirname, 'config.yml'))
+const isProduction = () => process.env.NODE_ENV === 'production'
 const destDir = () => isProduction() ? distDir : devDir
 const minify = Boolean(process.env.minify)
 

@@ -1,5 +1,9 @@
 module.exports = {
   root: true,
 
-  extends: ['goy']
+  extends: ['goy'],
+
+  rules: {
+    'no-undef': 0
+  }
 }

@@ -20,5 +20,5 @@ yarn-error.log*
 /dev
 /src/css/*.css
 
-# Uncomment beblow to push dist directory to git server
+# Uncomment next line to push dist directory to git repository
 /dist
