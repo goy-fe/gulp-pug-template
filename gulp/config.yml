@@ -21,9 +21,3 @@ base64Config:
 # config for pug
 pugConfig:
   pretty: true
-
-# Uncomment below to optimaze assets and uglify js file
-# minify: true
-
-# Uncomment below to enable imagemin plugin when build
-# imageminEnable: true

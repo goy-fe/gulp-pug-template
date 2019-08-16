@@ -7,17 +7,17 @@ const imageminPngquant = require('imagemin-pngquant')
 const browserSync = require('browser-sync').create()
 const loadPlugins = require('gulp-load-plugins')
 const $ = loadPlugins()
+
 const isProduction = () => process.env.NODE_ENV === 'production'
-let {
+const {
   devDir = 'dev',
   distDir = 'dist',
   sassConfig = {},
   base64Config = {},
   pugConfig = {},
-  minify = false,
-  imageminEnable = false,
 } = readYamlFile(resolve(__dirname, 'config.yml'))
 const destDir = () => isProduction() ? distDir : devDir
+const minify = Boolean(process.env.minify)
 
 const banner = `/*!
 =================================================================
@@ -64,10 +64,7 @@ function styles () {
     gulp
       .src(`src/scss/**/*.scss`)
       .pipe($.plumber())
-      .pipe($.sass(sassConfig).on('error', function (err) {
-        console.log(err)
-        this.$emit('end')
-      }))
+      .pipe($.sass(sassConfig).on('error', $.sass.logError))
       .pipe($.postcss())
       .pipe($.if(isProduction() && minify, $.base64(base64Config)))
       .pipe($.if(isProduction(), $.banner(banner)))
@@ -98,18 +95,19 @@ function images () {
       .src(`src/img/**/*.{jpg,jpeg,png,gif,svg}`)
       .pipe($.plumber())
       .pipe($.if(!isProduction(), $.changed(`${destDir()}/img`)))
-      .pipe($.if(isProduction() && imageminEnable,
-        $.imagemin(
-          [
+      .pipe(
+        $.if(
+          isProduction() && minify,
+          $.imagemin([
             $.imagemin.gifsicle({ interlaced: true }),
             $.imagemin.jpegtran({ progressive: true }),
             $.imagemin.optipng({ optimizationLevel: 7 }),
             $.imagemin.svgo(),
             imageminMozjpeg({ quality: 70 }),
             imageminPngquant({ quality: [0.65, 0.8] }),
-          ], {
-            verbose: false,
-          })))
+          ])
+        )
+      )
       .pipe(gulp.dest(`${destDir()}/img`))
       .pipe($.size({ title: 'Images total size' }))
   )
@@ -215,7 +213,6 @@ exports.build = async () => {
 
 exports.imagemin = async () => {
   process.env.NODE_ENV = 'production'
-  imageminEnable = true
 
   await gulp.series(images)()
 }

@@ -16,8 +16,8 @@
   "scripts": {
     "dev": "gulp dev",
     "build": "gulp build",
-    "plop": "plop",
-    "imagemin": "gulp imagemin"
+    "build:minify": "cross-env minify=true gulp build",
+    "plop": "plop"
   },
   "husky": {
     "hooks": {
@@ -27,6 +27,7 @@
   "lint-staged": {
     "*.js": [
       "prettier --write",
+      "eslint --fix",
       "git add"
     ]
   },
@@ -36,6 +37,7 @@
     "@babel/preset-env": "^7.5.5",
     "autoprefixer": "^9.6.1",
     "browser-sync": "^2.26.7",
+    "cross-env": "^5.2.0",
     "eslint": "^6.1.0",
     "eslint-config-goy": "^0.0.3",
     "fs-extra": "^8.1.0",
