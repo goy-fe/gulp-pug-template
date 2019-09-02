@@ -62,42 +62,38 @@ function clean () {
 function styles () {
   return (
     gulp
-      .src(`src/scss/**/*.scss`)
+      .src('src/scss/**/*.scss')
       .pipe($.plumber())
       .pipe($.sass(sassConfig).on('error', $.sass.logError))
       .pipe($.postcss())
-      .pipe($.if(isProduction() && minify, $.base64(base64Config)))
+      .pipe($.if(minify, $.base64(base64Config)))
       .pipe($.if(isProduction(), $.banner(banner)))
-      .pipe(gulp.dest(`src/css`))
+      .pipe(gulp.dest('src/css'))
+      .pipe($.if(minify, $.cleanCss()))
       .pipe(gulp.dest(`${destDir()}/css`))
-      .pipe($.if(isProduction() && minify, $.rename({ suffix: '.min' })))
-      .pipe($.if(isProduction() && minify, $.cleanCss()))
-      .pipe($.if(isProduction() && minify, gulp.dest(`${destDir()}/css`)))
   )
 }
 
 function scripts () {
   return (
     gulp
-      .src(`src/js/**/*.js`)
+      .src('src/js/**/*.js')
       .pipe($.plumber())
       .pipe($.babel())
+      .pipe($.if(minify, $.uglify()))
       .pipe(gulp.dest(`${destDir()}/js`))
-      .pipe($.if(isProduction() && minify, $.rename({ suffix: '.min' })))
-      .pipe($.if(isProduction() && minify, $.uglify()))
-      .pipe($.if(isProduction() && minify, gulp.dest(`${destDir()}/js`)))
   )
 }
 
 function images () {
   return (
     gulp
-      .src(`src/img/**/*.{jpg,jpeg,png,gif,svg}`)
+      .src('src/img/**/*.{jpg,jpeg,png,gif,svg}')
       .pipe($.plumber())
       .pipe($.if(!isProduction(), $.changed(`${destDir()}/img`)))
       .pipe(
         $.if(
-          isProduction() && minify,
+          minify,
           $.imagemin([
             $.imagemin.gifsicle({ interlaced: true }),
             $.imagemin.jpegtran({ progressive: true }),
@@ -116,7 +112,7 @@ function images () {
 function fonts () {
   return (
     gulp
-      .src(`src/fonts/**/*`)
+      .src('src/fonts/**/*')
       .pipe($.plumber())
       .pipe($.if(!isProduction(), $.changed(`${destDir()}/fonts`)))
       .pipe(gulp.dest(`${destDir()}/fonts`))
@@ -126,7 +122,7 @@ function fonts () {
 function views () {
   return (
     gulp
-      .src(`src/views/*.pug`)
+      .src('src/views/*.pug')
       .pipe($.plumber())
       .pipe($.data(injectPugData))
       .pipe($.pug(pugConfig))
@@ -139,7 +135,7 @@ function views () {
 function html () {
   return (
     gulp
-      .src(`src/*.html`)
+      .src('src/*.html')
       .pipe($.plumber())
       .pipe($.if(!isProduction(), $.changed(`${destDir()}`)))
       .pipe(gulp.dest(`${destDir()}`))
@@ -149,7 +145,7 @@ function html () {
 function statics () {
   return (
     gulp
-      .src(`src/static/**/*`)
+      .src('src/static/**/*')
       .pipe($.plumber())
       .pipe($.if(!isProduction(), $.changed(`${destDir()}/static`)))
       .pipe(gulp.dest(`${destDir()}/static`))
@@ -163,14 +159,14 @@ function server () {
     },
   })
 
-  gulp.watch(`src/*.html`, html)
-  gulp.watch(`src/views/**/*.{yml,pug}`, views)
-  gulp.watch(`src/scss/**/*.scss`, styles)
-  gulp.watch(`src/js/**/*.js`, scripts)
-  gulp.watch(`src/img/**/*`, images)
-  gulp.watch(`src/fonts/**/*`, fonts)
-  gulp.watch(`src/static/**/*`, statics)
-  gulp.watch(`./src/**`)
+  gulp.watch('src/*.html', html)
+  gulp.watch('src/views/**/*.{yml,pug}', views)
+  gulp.watch('src/scss/**/*.scss', styles)
+  gulp.watch('src/js/**/*.js', scripts)
+  gulp.watch('src/img/**/*', images)
+  gulp.watch('src/fonts/**/*', fonts)
+  gulp.watch('src/static/**/*', statics)
+  gulp.watch('./src/**')
     .on('change', browserSync.reload)
 }
 
@@ -209,10 +205,4 @@ exports.build = async () => {
       html
     )
   )()
-}
-
-exports.imagemin = async () => {
-  process.env.NODE_ENV = 'production'
-
-  await gulp.series(images)()
 }

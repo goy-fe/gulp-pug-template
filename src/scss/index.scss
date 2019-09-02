@@ -1,10 +1,16 @@
 @import "core/style";
 
 body {
-  color: red;
+  color: $text-primary-color;
 }
 
 .container {
-  // @include test;
-  color: red;
+  max-width: $layout-min-width;
+  margin: 0 auto;
+
+  h1 {
+    padding: 1em 0;
+    color: $primary-color;
+    text-align: center;
+  }
 }
