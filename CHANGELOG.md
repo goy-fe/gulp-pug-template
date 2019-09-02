@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/goy-fe/gulp-pug-template/compare/v0.1.3...v0.1.4) (2019-09-02)
+
+
+### Bug Fixes
+
+* disable vscode format handlebars ([bb12f5e](https://github.com/goy-fe/gulp-pug-template/commit/bb12f5e))
+
+
+### Features
+
+* minify js & css when build:minify ([db778c6](https://github.com/goy-fe/gulp-pug-template/commit/db778c6))
+
 ### [0.1.3](https://github.com/goy-fe/gulp-pug-template/compare/v0.1.2...v0.1.3) (2019-08-16)
 
 
