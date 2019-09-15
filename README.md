@@ -2,7 +2,7 @@
 
 基于 __[Gulp](https://gulpjs.com/)__ 与 __[Pug](https://pugjs.org/api/getting-started.html)__ 的网站类项目模板。
 
-## 集成功能
+## Features
 
 - scss
 - postcss
@@ -19,7 +19,7 @@
 
 支持配置定制，使用 `yaml` 来编写配置文件。
 
-## Build Setup
+## Usage
 
 ``` bash
 # install dependencies
@@ -37,3 +37,7 @@ $ yarn build:minify
 # generate template files
 $ yarn plop
 ```
+
+## Required
+
+node version `^10.13.0 || >=11.10.1`
