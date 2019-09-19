@@ -1,1 +1,1 @@
-module.exports = require('./gulp/task')
+module.exports = require('./scripts/gulpfile')
