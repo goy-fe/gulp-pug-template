@@ -1,3 +1,4 @@
+const { resolve } = require('path')
 const { notEmpty } = require('../utils')
 
 module.exports = {
@@ -13,16 +14,17 @@ module.exports = {
   ],
 
   actions: data => {
-    const name = '{{kebabCase name}}'
+    const name = data.name
+    const kebabName = `{{kebabCase name}}`
     const actions = [
-      { path: `src/views/${name}.pug`, template: `index` },
-      { path: `src/scss/${name}.scss`, template: `style` },
-      { path: `src/js/${name}.js`, template: `script` },
-      { path: `src/views/data/${name}.yml`, template: `config` },
+      { path: `src/views/${kebabName}.pug`, template: `index` },
+      { path: `src/scss/${kebabName}.scss`, template: `style` },
+      { path: `src/js/${kebabName}.js`, template: `script` },
+      { path: `src/views/data/${kebabName}.yml`, template: `config` },
     ].map(({ path, template }) => ({
       type: 'add',
       path,
-      templateFile: `${__dirname}/${template}.hbs`,
+      templateFile: resolve(__dirname, `${template}.hbs`),
       data: { name },
     }))
 

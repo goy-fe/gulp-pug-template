@@ -1,6 +1,8 @@
 // Docs at https://github.com/amwmedia/plop#case-modifiers
-const viewGenerator = require('./plop-templates/view/prompt')
+const generators = ['view']
 
 module.exports = plop => {
-  plop.setGenerator('view', viewGenerator)
+  generators.map(v =>
+    plop.setGenerator(v, require(`./plop-templates/${v}/prompt`))
+  )
 }

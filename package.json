@@ -10,7 +10,7 @@
     "boilerpate",
     "imagemin"
   ],
-  "description": "A project boilterplate based on gulp 4.x and pug.",
+  "description": "A web project boilterplate based on Gulp and Pug",
   "main": "gulpfile.js",
   "license": "MIT",
   "scripts": {
@@ -29,15 +29,18 @@
       "prettier --write",
       "eslint --fix",
       "git add"
+    ],
+    "*.scss": [
+      "prettier --write",
+      "git add"
     ]
   },
-  "author": "ntnyq <ntnyq13@gmail.com>",
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "autoprefixer": "^9.6.1",
     "browser-sync": "^2.26.7",
-    "cross-env": "^5.2.1",
+    "cross-env": "^6.0.0",
     "eslint": "^6.4.0",
     "eslint-config-goy": "^0.0.5",
     "fs-extra": "^8.1.0",
@@ -69,5 +72,7 @@
   },
   "engines": {
     "node": "^10.13.0 || >=11.10.1"
-  }
+  },
+  "repository": "https://github.com/goy-fe/gulp-pug-template.git",
+  "author": "ntnyq <ntnyq13@gmail.com> (https://ntnyq.com)"
 }

@@ -4,6 +4,6 @@ module.exports = {
   extends: ['goy'],
 
   rules: {
-    'no-undef': 0
-  }
+    'no-undef': 0,
+  },
 }

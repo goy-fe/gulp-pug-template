@@ -1,5 +1,13 @@
+node_modules
+
+# Enable lint dotfiles
+!.*
+node_modules/.*
+
+# Build assets
 dev
 dist
-node_modules
 .temp
+
+# Static files
 src/static

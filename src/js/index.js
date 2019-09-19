@@ -1,7 +1,10 @@
 $.WEBSITE = {
-  init() {}
+  init () {},
 }
 
+/**
+ * DOM Ready
+ */
 $(() => {
   $.WEBSITE.init()
 })
